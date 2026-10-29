@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a36">
+  <meta name="description" content="The professional profile of Mark Kipkoech Too, an Applied Computing graduate-in-progress focused on software development, cybersecurity and digital forensics.">
+  <title>Mark Kipkoech Too | Applied Computing</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17313b;
+      --muted: #62747a;
+      --paper: #f7f8f5;
+      --white: #fff;
+      --line: #dce5e1;
+      --green: #18745d;
+      --green-dark: #105542;
+      --mint: #dff1e9;
+      --navy: #102a36;
+      --gold: #e4b85d;
+      --shadow: 0 18px 50px rgb(23 49 59 / 9%);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+    }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar {
+      position: sticky;
+      z-index: 5;
+      top: 0;
+      border-bottom: 1px solid rgb(220 229 225 / 85%);
+      background: rgb(247 248 245 / 92%);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: -.025em;
+    }
+    .brand-mark {
+      display: grid;
+      width: 40px;
+      aspect-ratio: 1;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 27px; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-contact {
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 94px 0 88px;
+      background:
+        radial-gradient(ellipse at 82% 15%, rgb(54 131 103 / 32%), transparent 34%),
+        radial-gradient(ellipse at 70% 105%, rgb(228 184 93 / 12%), transparent 38%),
+        var(--navy);
+      color: #fff;
+    }
+    .hero::after {
+      position: absolute;
+      right: -120px;
+      bottom: -240px;
+      width: 560px;
+      height: 560px;
+      border: 1px solid rgb(255 255 255 / 10%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 48px rgb(255 255 255 / 3%), 0 0 0 96px rgb(255 255 255 / 2%);
+      content: "";
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(220px, .7fr);
+      align-items: center;
+      gap: 72px;
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: #b7d9ca;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 26px; height: 1px; background: var(--gold); content: ""; }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(42px, 6.2vw, 76px);
+      font-weight: 700;
+      letter-spacing: -.065em;
+      line-height: 1.02;
+    }
+    .hero-role {
+      max-width: 660px;
+      margin: 23px 0 0;
+      color: #c3d1d1;
+      font-size: clamp(16px, 2vw, 20px);
+      letter-spacing: .005em;
+      line-height: 1.55;
+    }
+    .hero-role span { color: #fff; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+      margin-top: 30px;
+      color: #c3d1d1;
+      font-size: 13px;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta svg { width: 15px; height: 15px; color: #9dc9b6; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 19px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: var(--green);
+      color: #fff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .button svg { width: 16px; height: 16px; }
+    .button-light { border-color: rgb(255 255 255 / 27%); background: transparent; }
+    .button-light:hover { background: rgb(255 255 255 / 9%); }
+    .hero .button { background: #d9eee3; color: var(--navy); }
+    .hero .button:hover { background: #fff; }
+    .hero .button-light { background: transparent; color: #fff; }
+    .hero .button-light:hover { background: rgb(255 255 255 / 9%); }
+
+    .hero-card {
+      justify-self: end;
+      width: min(100%, 290px);
+      padding: 25px;
+      border: 1px solid rgb(255 255 255 / 13%);
+      border-radius: 12px;
+      background: rgb(255 255 255 / 6%);
+      box-shadow: 0 20px 70px rgb(0 0 0 / 12%);
+      backdrop-filter: blur(10px);
+    }
+    .hero-card-label {
+      margin: 0 0 20px;
+      color: #a9c5bf;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .focus-item { display: flex; gap: 12px; align-items: flex-start; }
+    .focus-item + .focus-item { margin-top: 18px; }
+    .focus-index {
+      display: grid;
+      width: 27px;
+      height: 27px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      background: rgb(217 238 227 / 12%);
+      color: #d9eee3;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .focus-item strong { display: block; font-size: 13px; font-weight: 650; }
+    .focus-item small { color: #a9babc; font-size: 11px; }
+
+    main { padding: 78px 0 88px; }
+    .section { scroll-margin-top: 100px; }
+    .section + .section { margin-top: 75px; }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 27px;
+    }
+    .section-kicker {
+      margin: 0 0 7px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(25px, 3vw, 34px);
+      font-weight: 680;
+      letter-spacing: -.045em;
+      line-height: 1.2;
+    }
+    .section-note { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .profile-card {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 48px;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .profile-copy { margin: 0; color: #50636a; font-size: 15px; line-height: 1.85; }
+    .profile-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      padding-left: 32px;
+      border-left: 1px solid var(--line);
+    }
+    .profile-aside p { margin: 0; color: var(--muted); font-size: 12px; }
+    .profile-aside strong { display: block; margin-bottom: 2px; color: var(--ink); font-size: 13px; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .skill-card {
+      min-height: 176px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .skill-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .skill-icon {
+      display: grid;
+      width: 37px;
+      height: 37px;
+      place-items: center;
+      margin-bottom: 17px;
+      border-radius: 10px;
+      background: var(--mint);
+      color: var(--green);
+    }
+    .skill-icon svg { width: 19px; height: 19px; }
+    .skill-card h3 { margin: 0 0 7px; font-size: 14px; letter-spacing: -.015em; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+    .experience-list { display: grid; gap: 16px; }
+    .experience-card {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 30px;
+      padding: 26px 28px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .experience-date {
+      padding-right: 22px;
+      border-right: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .experience-date .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--green-dark);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .03em;
+    }
+    .experience-card h3 { margin: 0; font-size: 17px; letter-spacing: -.025em; }
+    .experience-role { margin: 4px 0 13px; color: var(--green); font-size: 12px; font-weight: 700; }
+    .experience-card ul { margin: 0; padding-left: 18px; color: #5b6d72; font-size: 13px; }
+    .experience-card li + li { margin-top: 6px; }
+
+    .lower-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; }
+    .education-card, .languages-card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .education-item { position: relative; padding-left: 22px; }
+    .education-item::before {
+      position: absolute;
+      top: 7px;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      background: #fff;
+      content: "";
+    }
+    .education-item + .education-item { margin-top: 20px; }
+    .education-item h3 { margin: 0; font-size: 14px; }
+    .education-item p { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+    .education-item .degree { color: var(--ink); }
+    .languages-card { display: flex; flex-direction: column; justify-content: center; gap: 21px; }
+    .language-row { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+    .language-row strong { font-size: 14px; }
+    .language-row span { color: var(--muted); font-size: 12px; }
+    .language-track { height: 5px; margin-top: 8px; overflow: hidden; border-radius: 99px; background: #e9efec; }
+    .language-track i { display: block; width: 88%; height: 100%; border-radius: inherit; background: var(--green); }
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 37px 40px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact::after {
+      position: absolute;
+      top: -90px;
+      right: 18%;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgb(255 255 255 / 9%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 30px rgb(255 255 255 / 3%);
+      content: "";
+    }
+    .contact > * { position: relative; z-index: 1; }
+    .contact h2 { font-size: 26px; }
+    .contact p { margin: 9px 0 0; color: #b8c8c8; font-size: 13px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact .button { white-space: nowrap; }
+
+    footer { padding: 26px 0 32px; color: var(--muted); font-size: 11px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    footer p { margin: 0; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--green); }
+
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 38px; }
+      .hero-card { justify-self: start; width: min(100%, 520px); }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-card { gap: 28px; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 36px, 1120px); }
+      .nav { min-height: 66px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 11px; }
+      .nav-links a:not(.nav-contact) { display: none; }
+      .hero { padding: 70px 0 60px; }
+      .hero-grid { gap: 32px; }
+      main { padding: 58px 0 65px; }
+      .section + .section { margin-top: 56px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 8px; }
+      .profile-card { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
+      .profile-aside { padding: 20px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .skills-grid { gap: 10px; }
+      .skill-card { min-height: 0; padding: 17px; }
+      .skill-icon { margin-bottom: 13px; }
+      .experience-card { grid-template-columns: 1fr; gap: 15px; padding: 22px; }
+      .experience-date { padding: 0 0 12px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .lower-grid { grid-template-columns: 1fr; }
+      .contact { align-items: flex-start; flex-direction: column; padding: 29px 24px; }
+      .contact-links { width: 100%; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+    @media print {
+      :root { --ink: #152b33; --muted: #516269; --paper: #fff; }
+      body { background: #fff; font-size: 10pt; }
+      .wrap { width: 100%; }
+      .topbar, .hero-actions, .contact-links, footer, .section-note { display: none !important; }
+      .hero { padding: 28px 0; background: var(--navy) !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .hero::after { display: none; }
+      .hero-grid { grid-template-columns: 1fr; gap: 18px; }
+      .hero-card { display: none; }
+      h1 { font-size: 35pt; }
+      .hero-meta { margin-top: 14px; }
+      main { padding: 25px 0; }
+      .section + .section { margin-top: 26px; }
+      .section-heading { margin-bottom: 12px; }
+      h2 { font-size: 20pt; }
+      .profile-card { grid-template-columns: 1fr; gap: 12px; padding: 18px; box-shadow: none; }
+      .profile-aside { flex-direction: row; justify-content: flex-start; gap: 28px; padding: 12px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+      .skills-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .skill-card { min-height: 0; padding: 12px; break-inside: avoid; }
+      .skill-icon { display: none; }
+      .experience-list { gap: 8px; }
+      .experience-card { grid-template-columns: 155px 1fr; gap: 18px; padding: 14px; break-inside: avoid; }
+      .experience-date { padding-right: 12px; }
+      .lower-grid { gap: 14px; }
+      .education-card, .languages-card { padding: 16px; break-inside: avoid; }
+      .contact { margin-top: 20px; padding: 20px; break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .contact::after { display: none; }
+      a { text-decoration: none; }
+      @page { margin: 14mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Mark Kipkoech Too, home">
+        <span class="brand-mark" aria-hidden="true">MT</span>
+        <span>Mark Kipkoech Too</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a class="nav-contact" href="#contact">Get in touch</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-grid wrap">
+      <div>
+        <p class="eyebrow">Applied Computing · Nairobi, Kenya</p>
+        <h1 id="hero-title">Mark Kipkoech Too</h1>
+        <p class="hero-role"><span>Software Development</span> · Cybersecurity · Digital Forensics</p>
+        <div class="hero-meta">
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Nairobi / Eldoret, Kenya
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <a href="mailto:marktoo2580@gmail.com">marktoo2580@gmail.com</a>
+          </span>
+        </div>
+        <div class="hero-actions">
+          <a class="button" href="#contact">
+            Get in touch
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+          <button class="button button-light" type="button" onclick="window.print()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v7H7z"/></svg>
+            Print / save as PDF
+          </button>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Professional focus">
+        <p class="hero-card-label">Areas of focus</p>
+        <div class="focus-item">
+          <span class="focus-index">01</span>
+          <div><strong>Build useful software</strong><small>Web technologies & databases</small></div>
+        </div>
+        <div class="focus-item">
+          <span class="focus-index">02</span>
+          <div><strong>Support reliable ICT</strong><small>User support & troubleshooting</small></div>
+        </div>
+        <div class="focus-item">
+          <span class="focus-index">03</span>
+          <div><strong>Explore digital forensics</strong><small>Security & forensic tools</small></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">Introduction</p><h2 id="about-title">Professional profile</h2></div>
+        <p class="section-note">Curious by nature. Reliable by practice.</p>
+      </div>
+      <div class="profile-card">
+        <p class="profile-copy">Applied Computing graduate-in-progress at KCA University, with an academic focus spanning software development, cybersecurity and computer forensics. Practical exposure includes ICT user support, computer and printer setup, troubleshooting, records organisation and day-to-day office technology support during internships at the Communications Authority of Kenya (CAK) and the Public Benefit Organizations Regulatory Authority (PBORA). I bring a methodical, service-oriented approach and an interest in building useful software, protecting information systems and supporting reliable ICT operations.</p>
+        <div class="profile-aside">
+          <p><strong>Education</strong>BSc Applied Computing · KCA University</p>
+          <p><strong>Professional interests</strong>Software · Cybersecurity · Digital forensics</p>
+          <p><strong>Languages</strong>English · Kiswahili</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="expertise" aria-labelledby="expertise-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">What I bring</p><h2 id="expertise-title">Core competencies</h2></div>
+        <p class="section-note">A practical foundation, with room to keep growing.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></svg></span>
+          <h3>Software & web</h3><p>Python, HTML, CSS and React</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5m-16 7v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg></span>
+          <h3>Databases</h3><p>MySQL and SQLite</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Cybersecurity & forensics</h3><p>Academic focus; Autopsy and familiarity with forensic investigation tools</p>
+        </article>
+        <article class="skill-card">
+          <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4m-5-9 3-3 2 2 3-4"/></svg></span>
+          <h3>ICT user support</h3><p>Computer and printer setup, troubleshooting, OS installation and SSD upgrades</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">Practical experience</p><h2 id="experience-title">Professional experience</h2></div>
+      </div>
+      <div class="experience-list">
+        <article class="experience-card">
+          <div class="experience-date">
+            <time datetime="2026-08-03">3 Aug 2026</time> – <time datetime="2026-11-03">3 Nov 2026</time>
+            <span class="tag">ICT / Office Support</span>
+          </div>
+          <div>
+            <h3>Communications Authority of Kenya (CAK)</h3>
+            <p class="experience-role">Internship</p>
+            <ul>
+              <li>Provided day-to-day administrative and office support, including document sorting, organisation and retrieval.</li>
+              <li>Supported office coordination and communication, undertaking acting secretarial responsibilities when required.</li>
+              <li>Assisted with routine ICT tasks and helped maintain orderly handling of office information and documentation.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="experience-card">
+          <div class="experience-date">
+            Internship
+            <span class="tag">ICT User Support</span>
+          </div>
+          <div>
+            <h3>Public Benefit Organizations Regulatory Authority (PBORA)</h3>
+            <p class="experience-role">ICT User Support Internship</p>
+            <ul>
+              <li>Assisted with computer and printer setup, configuration and basic troubleshooting for staff.</li>
+              <li>Supported operating-system installation and storage upgrades, including HDD-to-SSD replacement tasks.</li>
+              <li>Helped organise ICT equipment and documentation and supported routine user-support activities.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="education-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">Academic background</p><h2 id="education-title">Education & languages</h2></div>
+      </div>
+      <div class="lower-grid">
+        <div class="education-card">
+          <div class="education-item">
+            <h3>KCA University</h3><p class="degree">Bachelor of Science in Applied Computing</p><p>2023 – Present · Studies completed; graduation pending</p>
+          </div>
+          <div class="education-item">
+            <h3>Segero Adventist National School</h3><p>Kenya Certificate of Secondary Education (KCSE) · 2019–2022</p>
+          </div>
+          <div class="education-item">
+            <h3>Eldoret Premier School</h3><p>Kenya Certificate of Primary Education (KCPE) · 2011–2018</p>
+          </div>
+          <div class="education-item">
+            <h3>Forestview Academy</h3><p>Pre-primary education · 2009–2010</p>
+          </div>
+        </div>
+        <div class="languages-card" aria-label="Language proficiency">
+          <div>
+            <div class="language-row"><strong>English</strong><span>Proficient</span></div>
+            <div class="language-track" aria-hidden="true"><i></i></div>
+          </div>
+          <div>
+            <div class="language-row"><strong>Kiswahili</strong><span>Proficient</span></div>
+            <div class="language-track" aria-hidden="true"><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="contact">
+        <div>
+          <p class="section-kicker">Start a conversation</p>
+          <h2 id="contact-title">Let’s connect.</h2>
+          <p>Open to professional opportunities and meaningful conversations in technology.</p>
+        </div>
+        <div class="contact-links">
+          <a class="button" href="mailto:marktoo2580@gmail.com">Email me</a>
+          <a class="button button-light" href="tel:+254719617603">+254 719 617 603</a>
+          <a class="button button-light" href="https://www.linkedin.com/in/mark-kipkoech-202078283/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <p>© <span id="year">2026</span> Mark Kipkoech Too · Nairobi, Kenya</p>
+      <div class="footer-links">
+        <a href="mailto:marktoo2580@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/mark-kipkoech-202078283/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
